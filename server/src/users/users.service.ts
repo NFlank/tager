@@ -74,6 +74,10 @@ export class UsersService {
 
     const user = await this.userModel.findOne({username: loginData.username})
 
+    if (!user) {
+      return {error: 'User with this username doesn`t exist'}
+    }
+
     const isPasswordValid = await bcrypt.compare(loginData.password, user.password)
 
     if (!isPasswordValid) {
