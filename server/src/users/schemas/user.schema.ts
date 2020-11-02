@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose'
 
-export const TaskResponseSchema = new mongoose.Schema({
+export const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true
@@ -9,19 +9,16 @@ export const TaskResponseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-	email: {
-    type: String,
-    required: true
-  },
+	email: String,
 	registrationDate: {
     type: String,
-    required: true
+    default: new Date()
   },
 	bdayDay: {
     type: String
   }, 
 	notifications: [{
-		Task: {
+		task: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Task' 
     },
@@ -33,6 +30,6 @@ export const TaskResponseSchema = new mongoose.Schema({
 	}],
 	isEmailConfirmed: {
     type: Boolean,
-    required: true
+    default: false
   }
 })
